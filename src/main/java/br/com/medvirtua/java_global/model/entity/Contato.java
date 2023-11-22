@@ -2,16 +2,18 @@ package br.com.medvirtua.java_global.model.entity;
 
 public class Contato {
     private String tipoContato;
-    private int numeroTelefone;
+    private int numero;
     private String email;
+    private Long id;
 
     public Contato() {
     }
 
-    public Contato(String tipoContato, int numeroTelefone, String email) {
+    public Contato(String tipoContato, int numero, String email, Long id) {
         this.tipoContato = tipoContato;
-        this.numeroTelefone = numeroTelefone;
+        this.numero = numero;
         this.email = email;
+        this.id = id;
     }
 
     public String getTipoContato() {
@@ -22,12 +24,12 @@ public class Contato {
         this.tipoContato = tipoContato;
     }
 
-    public int getNumeroTelefone() {
-        return numeroTelefone;
+    public int getNumero() {
+        return numero;
     }
 
-    public void setNumeroTelefone(int numeroTelefone) {
-        this.numeroTelefone = numeroTelefone;
+    public void setNumero(int numero) {
+        this.numero = numero;
     }
 
     public String getEmail() {
@@ -36,5 +38,13 @@ public class Contato {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }

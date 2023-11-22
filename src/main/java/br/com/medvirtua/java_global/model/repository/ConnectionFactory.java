@@ -25,34 +25,25 @@ public class ConnectionFactory {
     }
 
     public static ConnectionFactory getInstance() {
-        ConnectionFactory result = instance;
-
-        if (result != null) {
-            return result;
+        if (instance != null) {
+            return instance;
         }
 
         Properties prop = new Properties();
-        FileInputStream file = null;
-        try {
-            file = new FileInputStream("./src/main/resources/application.properties");
+        try (FileInputStream file = new FileInputStream("./src/main/resources/application.properties")) {
             prop.load(file);
-
             String url = prop.getProperty("datasource.url");
             String user = prop.getProperty("datasource.username");
             String pass = prop.getProperty("datasource.password");
             String driver = prop.getProperty("datasource.driver-class-name");
-            file.close();
+            System.out.println("url: " + url + "\nuser: " + user + "\npass: " + pass + "\ndriver: " + driver);
 
-            if (instance == null) {
-                instance = new ConnectionFactory(url, user, pass, driver);
-            }
+            instance = new ConnectionFactory(url, user, pass, driver);
             return instance;
-
-        } catch (FileNotFoundException e) {
-            System.out.println(e.getMessage());
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
+
         return null;
     }
 
