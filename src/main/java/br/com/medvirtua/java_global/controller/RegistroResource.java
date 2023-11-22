@@ -28,9 +28,10 @@ public class RegistroResource {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Response findAll(){
+    @Path("/{nome}")
+    public Response findAll(@PathParam("nome") String nome){
         try {
-            ArrayList<Registro> resposta = RegistroRepository.findAll();
+            ArrayList<Registro> resposta = RegistroRepository.findByName(nome);
             if (resposta.isEmpty()) {
                 return Response.status(Response.Status.NOT_FOUND).build();
             }

@@ -25,11 +25,12 @@ public class RegistroRepository extends Repository{
         }
         return null;
     }
-    public static ArrayList<Registro> findAll() {
-        String sql = "SELECT * FROM t_mdv_registro";
+    public static ArrayList<Registro> findByName(String name) {
+        String sql = "SELECT * FROM t_mdv_registro where nm_usuario = ?";
         ArrayList<Registro> registros = new ArrayList<Registro>();
         try {
             PreparedStatement ps = getConnection().prepareStatement(sql);
+            ps.setString(1, name);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 Registro registro = new Registro();
