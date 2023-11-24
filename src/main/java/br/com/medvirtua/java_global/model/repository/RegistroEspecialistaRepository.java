@@ -1,6 +1,5 @@
 package br.com.medvirtua.java_global.model.repository;
 
-import br.com.medvirtua.java_global.model.entity.Registro;
 import br.com.medvirtua.java_global.model.entity.RegistroEspecialista;
 
 import java.sql.PreparedStatement;
@@ -49,4 +48,45 @@ public class RegistroEspecialistaRepository extends Repository{
         }
         return registros;
     }
+    public static boolean delete(Long id) {
+        String sql = "delete from T_MDV_REGISTRO_ESPECIALISTA where ID_USUARIO = ?";
+        try {
+            PreparedStatement ps = getConnection().prepareStatement(sql);
+            ps.setLong(1, id);
+            if (ps.executeUpdate() > 0) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (SQLException e) {
+            System.out.println("Erro ao excluir: " + e.getMessage());
+        } finally {
+            closeConnection();
+        }
+        return false;
+    }
+
+    public static RegistroEspecialista update(RegistroEspecialista registroEspecialista) {
+        String sql = "UPDATE T_MDV_REGISTRO_ESPECIALISTA SET NM_USUARIO=?, NM_SENHA=?, NR_CRM=? WHERE ID_USUARIO=?";
+
+        try {
+            PreparedStatement ps = getConnection().prepareStatement(sql);
+            ps.setString(1, registroEspecialista.getNome());
+            ps.setString(2, registroEspecialista.getSenha());
+            ps.setInt(3, registroEspecialista.getCrm());
+            ps.setLong(4, registroEspecialista.getId());
+
+            if (ps.executeUpdate() > 0) {
+                return registroEspecialista;
+            } else {
+                return null;
+            }
+        } catch (SQLException e) {
+            System.out.println("Erro ao atualizar: " + e.getMessage());
+        } finally {
+            closeConnection();
+        }
+        return null;
+    }
+
 }

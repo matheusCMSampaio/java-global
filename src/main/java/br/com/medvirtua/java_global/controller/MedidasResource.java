@@ -1,21 +1,20 @@
 package br.com.medvirtua.java_global.controller;
 
-import br.com.medvirtua.java_global.model.entity.RegistroEspecialista;
-import br.com.medvirtua.java_global.model.repository.RegistroEspecialistaRepository;
+import br.com.medvirtua.java_global.model.entity.Medidas;
+import br.com.medvirtua.java_global.model.repository.MedidasRepository;
 import jakarta.validation.Valid;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
-import jakarta.ws.rs.core.Response.ResponseBuilder;
-import java.util.ArrayList;
 
-@Path("registroEspecialista")
-public class RegistroEspecialistaResource {
+import java.util.ArrayList;
+@Path("medidas")
+public class MedidasResource {
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response save(@Valid RegistroEspecialista registroEspecialista){
+    public Response save(@Valid Medidas medidas){
         try {
-            RegistroEspecialista resposta = RegistroEspecialistaRepository.save(registroEspecialista);
+            Medidas resposta = MedidasRepository.save(medidas);
             return Response.status(Response.Status.CREATED).entity(resposta).build();
         }catch (Exception e){
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
@@ -24,10 +23,9 @@ public class RegistroEspecialistaResource {
     }
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    @Path("{nome}")
-    public Response findByName(@PathParam("nome") String nome){
+    public Response findAll(){
         try {
-            ArrayList<RegistroEspecialista> resposta = RegistroEspecialistaRepository.findByName(nome);
+            ArrayList<Medidas> resposta = MedidasRepository.findAll();
             if (resposta.isEmpty()) {
                 return Response.status(Response.Status.NOT_FOUND).build();
             }
@@ -41,7 +39,7 @@ public class RegistroEspecialistaResource {
     @Path("/{id}")
     @DELETE
     public Response delete(@PathParam("id") Long id){
-        if(RegistroEspecialistaRepository.delete(id)){
+        if(MedidasRepository.delete(id)){
             return Response.noContent().build();
         }else {
             return Response.status(404).build();
@@ -49,9 +47,9 @@ public class RegistroEspecialistaResource {
     }
     @Consumes(MediaType.APPLICATION_JSON)
     @PUT
-    public Response update(@Valid RegistroEspecialista registroEspecialista){
-        RegistroEspecialista resposta = RegistroEspecialistaRepository.update(registroEspecialista);
-        ResponseBuilder response = null;
+    public Response update(@Valid Medidas medidas){
+        Medidas resposta = MedidasRepository.update(medidas);
+        Response.ResponseBuilder response = null;
         if(resposta != null){
             response = Response.status(Response.Status.OK).entity(resposta);
         } else {
@@ -59,5 +57,4 @@ public class RegistroEspecialistaResource {
         }
         return response.build();
     }
-
 }

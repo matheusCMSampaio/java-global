@@ -2,14 +2,14 @@ package br.com.medvirtua.java_global.model.entity;
 
 public class Contato {
     private String tipoContato;
-    private int numero;
+    private Long numero;
     private String email;
     private Long id;
 
     public Contato() {
     }
 
-    public Contato(String tipoContato, int numero, String email, Long id) {
+    public Contato(String tipoContato, Long numero, String email, Long id) {
         this.tipoContato = tipoContato;
         this.numero = numero;
         this.email = email;
@@ -24,11 +24,11 @@ public class Contato {
         this.tipoContato = tipoContato;
     }
 
-    public int getNumero() {
+    public Long getNumero() {
         return numero;
     }
 
-    public void setNumero(int numero) {
+    public void setNumero(Long numero) {
         this.numero = numero;
     }
 
