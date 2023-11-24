@@ -1,17 +1,27 @@
 package br.com.medvirtua.java_global.model.entity;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+
 public class Doenca {
+    @NotBlank
     private String nome;
+    @NotBlank
     private String tipo;
+    @NotBlank
     private String faixaEtaria;
+    @NotBlank
     private String descricao;
+    @NotNull
     private Long idUsuario;
+
     private Long idDoenca;
 
     public Doenca() {
     }
 
-    public Doenca(String nome, String tipo, String faixaEtaria, String descricao, Long idUsuario, Long idDoenca) {
+    public Doenca(@NotBlank String nome,@NotBlank String tipo,@NotBlank String faixaEtaria,@NotBlank String descricao,
+                  @NotNull Long idUsuario, Long idDoenca) {
         this.nome = nome;
         this.tipo = tipo;
         this.faixaEtaria = faixaEtaria;

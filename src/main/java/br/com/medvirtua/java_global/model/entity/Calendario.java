@@ -1,18 +1,28 @@
 package br.com.medvirtua.java_global.model.entity;
 
+import jakarta.validation.constraints.FutureOrPresent;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+
 import java.time.LocalDate;
 
 public class Calendario {
+    @FutureOrPresent
     private LocalDate dataMarcada;
+    @NotBlank
     private String nomeEvento;
+    @NotBlank
     private String tipoEvento;
+    @NotNull
     private Long idCalendario;
+    @NotNull
     private Long idUsuario;
 
     public Calendario() {
     }
 
-    public Calendario(LocalDate dataMarcada, String nomeEvento, String tipoEvento, Long idCalendario, Long idUsuario) {
+    public Calendario(@FutureOrPresent LocalDate dataMarcada,@NotBlank String nomeEvento,@NotBlank String tipoEvento,
+                     @NotNull Long idCalendario, @NotNull Long idUsuario) {
         this.dataMarcada = dataMarcada;
         this.nomeEvento = nomeEvento;
         this.tipoEvento = tipoEvento;

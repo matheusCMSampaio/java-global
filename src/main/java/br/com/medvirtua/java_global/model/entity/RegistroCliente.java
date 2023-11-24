@@ -1,18 +1,26 @@
 package br.com.medvirtua.java_global.model.entity;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.PastOrPresent;
+
 import java.time.LocalDate;
 
 public class RegistroCliente {
     private Long id;
+    @NotBlank
     private String nome;
+    @NotBlank
     private String senha;
+    @NotNull
     private int cep;
+    @PastOrPresent
     private LocalDate dataNascimento;
 
     public RegistroCliente() {
     }
 
-    public RegistroCliente(Long id, String nome, String senha, int cep, LocalDate dataNascimento) {
+    public RegistroCliente(Long id, @NotBlank String nome, @NotBlank String senha,@NotNull int cep,@PastOrPresent LocalDate dataNascimento) {
         this.id = id;
         this.nome = nome;
         this.senha = senha;

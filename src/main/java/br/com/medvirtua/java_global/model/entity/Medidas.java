@@ -1,7 +1,10 @@
 package br.com.medvirtua.java_global.model.entity;
 
+import jakarta.validation.constraints.NotNull;
+
 public class Medidas {
     private String nomeVacina;
+    @NotNull
     private Long idVacina;
     private String descricaoMedida;
     private String descricaoRemedio;

@@ -1,14 +1,19 @@
 package br.com.medvirtua.java_global.model.entity;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+
 public class Registro {
     private Long id;
+    @NotBlank
     private String nome;
+    @NotBlank
     private String senha;
 
     public Registro() {
     }
 
-    public Registro(Long id, String nome, String senha) {
+    public Registro(Long id, @NotBlank String nome,@NotBlank String senha) {
         this.id = id;
         this.nome = nome;
         this.senha = senha;

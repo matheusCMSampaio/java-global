@@ -1,15 +1,22 @@
 package br.com.medvirtua.java_global.model.entity;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+
 public class Contato {
+    @NotBlank
     private String tipoContato;
+    @NotNull
     private Long numero;
+    @NotBlank
     private String email;
+    @NotNull
     private Long id;
 
     public Contato() {
     }
 
-    public Contato(String tipoContato, Long numero, String email, Long id) {
+    public Contato(@NotBlank String tipoContato, @NotNull Long numero, @NotBlank String email,@NotNull Long id) {
         this.tipoContato = tipoContato;
         this.numero = numero;
         this.email = email;
